@@ -1,4 +1,5 @@
-import { addClosure, removeClosure, saveEventNotes } from "@/app/admin/actions";
+import { addClosure, deletePlannedEvent, removeClosure, saveEventNotes } from "@/app/admin/actions";
+import { PlannerForm, type Planned, type Template } from "@/components/admin/PlannerForm";
 import { ActionForm, ConfirmButton } from "@/components/admin/forms";
 import { AdminTitle, Area, Check, Field, Panel, Select } from "@/components/admin/fields";
 import { requireEditor } from "@/lib/admin";
@@ -25,10 +26,20 @@ type AdminEvent = {
 export default async function EventsPage() {
   const sb = await requireEditor();
   const today = todayIso();
-  const [ev, cl] = await Promise.all([
+  const [ev, cl, pl, tp, tr] = await Promise.all([
     sb.rpc("site_admin_events", { p_from: addDays(today, -28), p_to: addDays(today, 180) }),
     sb.from("site_closures").select("*").gte("date", today).order("date"),
+    sb.from("site_planned_events").select("*").is("door_event_id", null).gte("date", today).order("date"),
+    sb.rpc("site_event_templates"),
+    sb.from("site_instructors").select("name").eq("active", true).order("sort"),
   ]);
+  // The planner needs the site_planned_events migration; until it is applied, say so instead of failing.
+  const plannerReady = !pl.error;
+  const planned = (pl.data ?? []) as Planned[];
+  const templates = ((tp.data ?? []) as Template[]).filter((t) => t && t.id && t.name);
+  const teachers = (tr.data ?? []).map((t) => t.name as string);
+  let nextTue = addDays(today, 1);
+  while (new Date(`${nextTue}T12:00:00Z`).getUTCDay() !== 2) nextTue = addDays(nextTue, 1);
   const events = ((ev.data ?? []) as AdminEvent[]).sort((a, b) => a.date.localeCompare(b.date));
   const upcoming = events.filter((e) => e.date >= today);
   const recent = events.filter((e) => e.date < today).reverse();
@@ -36,18 +47,63 @@ export default async function EventsPage() {
 
   return (
     <>
-      <AdminTitle kicker="WEBSITE DETAILS FOR DOOR-APP NIGHTS">EVENTS</AdminTitle>
-      <p className="mb-6 max-w-[720px] text-sm leading-[1.6] text-body">
-        Nights are created in the door app (name, date, times, teachers, price). Every regular Tuesday shows on the public calendar automatically. Use this
-        page to add a topic, a short description and a Meetup link to a night, hide one from the website, or mark a Tuesday as off.
+      <AdminTitle kicker="PLAN NIGHTS HERE · DOOR APP GETS THEM 7 DAYS OUT">EVENTS</AdminTitle>
+      <p className="mb-6 max-w-[760px] text-sm leading-[1.6] text-body">
+        Plan nights on the website as far ahead as you like; they show on the public calendar right away. Each one is sent to the door app automatically
+        when it is 7 days out (checked every hour), and from then on the door app owns its times, price and check-ins. Regular Tuesdays still appear on
+        the public calendar even if nothing is planned.
       </p>
 
       {ev.error ? <p className="mb-4 font-mono text-xs text-[#ff8a63]">Could not load events: {ev.error.message}</p> : null}
 
-      <h2 className="display mb-3 text-[28px]">UPCOMING</h2>
+      <Panel className="mb-6 border-blue/40">
+        <div className="mb-4 font-mono text-[10px] tracking-[2px] text-blue">PLAN A NIGHT</div>
+        {plannerReady ? (
+          <PlannerForm templates={templates} defaultDate={nextTue} teachers={teachers} />
+        ) : (
+          <p className="text-sm text-body">
+            The planner is waiting on a database update (the site_planned_events table). Once it&apos;s approved in Supabase, this form appears here.
+          </p>
+        )}
+      </Panel>
+
+      {planned.length ? (
+        <>
+          <h2 className="display mb-3 text-[28px]">
+            PLANNED <span className="text-blue">· WEBSITE ONLY</span>
+          </h2>
+          <div className="mb-10 flex flex-col gap-3.5">
+            {planned.map((p) => (
+              <details key={p.id} className="border border-line bg-ink">
+                <summary className="flex cursor-pointer list-none flex-wrap items-baseline justify-between gap-3 px-5 py-4 hover:bg-card">
+                  <span>
+                    <span className="font-display text-2xl text-white">{longLabel(p.date).toUpperCase()}</span>
+                    <span className="ml-3 text-sm text-body">{p.topic ? `${p.name}: ${p.topic}` : p.name}</span>
+                  </span>
+                  <span className="font-mono text-[10px] tracking-[1px] text-muted">
+                    {p.hidden ? <span className="text-warn">HIDDEN · </span> : null}
+                    GOES TO DOOR APP {longLabel(addDays(p.date, -7)).toUpperCase()} · EDIT ▾
+                  </span>
+                </summary>
+                <div className="border-t border-line p-5">
+                  <PlannerForm templates={templates} planned={p} defaultDate={p.date} teachers={teachers} />
+                  <form action={deletePlannedEvent} className="mt-3 flex justify-end">
+                    <input type="hidden" name="id" value={p.id} />
+                    <ConfirmButton label="DELETE NIGHT" confirm={`Delete the ${p.date} night?`} />
+                  </form>
+                </div>
+              </details>
+            ))}
+          </div>
+        </>
+      ) : null}
+
+      <h2 className="display mb-3 text-[28px]">
+        IN THE DOOR APP <span className="text-blue">· NEXT 6 MONTHS</span>
+      </h2>
       {upcoming.length === 0 ? (
         <Panel className="mb-8">
-          <p className="text-sm text-body">No upcoming nights exist in the door app yet.</p>
+          <p className="text-sm text-body">No upcoming nights are in the door app yet. Planned nights arrive here 7 days out.</p>
         </Panel>
       ) : (
         <div className="mb-10 flex flex-col gap-3.5">

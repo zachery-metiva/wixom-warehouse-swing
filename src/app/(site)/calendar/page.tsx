@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SubscribeCalendar } from "@/components/site/AddToCalendar";
 import { CalendarView } from "@/components/site/CalendarView";
 import { MonoLink, PageHeader } from "@/components/ui";
 import { getCalendar, getPricing, getSettings } from "@/lib/data";
@@ -46,6 +47,7 @@ export default async function CalendarPage() {
               DIRECTIONS + CONTACT →
             </MonoLink>
           </div>
+          <SubscribeCalendar />
         </aside>
       </div>
     </div>

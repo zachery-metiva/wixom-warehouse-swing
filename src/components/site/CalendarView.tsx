@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { MONTHS, parseIso, shortLabel } from "@/lib/dates";
 import type { SiteEvent } from "@/lib/types";
+import { AddToCalendar } from "./AddToCalendar";
 
 const DOWS = ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"];
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -133,7 +134,7 @@ export function CalendarView({ today, events, meetupFallback }: { today: string;
                     <br />
                     7:45 SOCIAL DANCE, UNTIL 10:00
                   </div>
-                  <div className="mt-3 flex flex-wrap gap-2.5">
+                  <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2.5">
                     <span className="font-mono text-[11px] text-muted">
                       THE WAREHOUSE · WIXOM, MI{ev.teachers ? ` · ${ev.teachers.toUpperCase()}` : ""}
                     </span>
@@ -142,6 +143,7 @@ export function CalendarView({ today, events, meetupFallback }: { today: string;
                         RSVP ON MEETUP →
                       </a>
                     ) : null}
+                    {!past ? <AddToCalendar ev={ev} compact /> : null}
                   </div>
                 </div>
               </div>

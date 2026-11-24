@@ -70,6 +70,83 @@ export async function removeClosure(form: FormData) {
   updateTag(SITE_TAG);
 }
 
+/* ---------- planned events (website-created nights) ---------- */
+
+function to12h(t: string, fallback: string) {
+  const m = t.match(/^(\d{1,2}):(\d{2})$/);
+  if (!m) return fallback;
+  const h = Number(m[1]);
+  return `${h % 12 || 12}:${m[2]} ${h < 12 ? "AM" : "PM"}`;
+}
+
+function addWeeks(iso: string, n: number) {
+  const d = new Date(`${iso}T12:00:00Z`);
+  d.setUTCDate(d.getUTCDate() + 7 * n);
+  return d.toISOString().slice(0, 10);
+}
+
+export async function savePlannedEvent(_prev: FormState, form: FormData): Promise<FormState> {
+  const sb = await requireEditor();
+  const id = str(form, "id");
+  const date = str(form, "date", 10);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) return { ok: false, message: "Pick a date." };
+  const name = str(form, "name", 120);
+  if (!name) return { ok: false, message: "Give the night a name." };
+  const level = str(form, "level");
+  const row = {
+    name,
+    night_type: str(form, "night_type", 40) || null,
+    doors_open: to12h(str(form, "doors_open", 5), "7:00 PM"),
+    lesson_start: to12h(str(form, "lesson_start", 5), ""),
+    social_start: to12h(str(form, "social_start", 5), "7:45 PM"),
+    lesson_teacher: str(form, "lesson_teacher", 200),
+    capacity: Math.max(1, Math.round(num(form, "capacity", 100))),
+    price_cents: Math.max(0, Math.round(num(form, "price", 10) * 100)),
+    topic: str(form, "topic", 120),
+    level: (LEVELS as readonly string[]).includes(level) ? level : "All levels",
+    description: str(form, "description", 2000),
+    meetup_url: url(form, "meetup_url"),
+    hidden: bool(form, "hidden"),
+  };
+
+  if (id) {
+    const { error } = await sb.from("site_planned_events").update({ ...row, date }).eq("id", id);
+    if (error) return fail(error, "Could not save (nights already sent to the door app can't be edited here).");
+  } else {
+    const weeks = Math.min(26, Math.max(1, Math.round(num(form, "repeat", 1))));
+    const dates = Array.from({ length: weeks }, (_, i) => addWeeks(date, i));
+    // Skip dates that already have a night, planned here or in the door app.
+    const [planned, door] = await Promise.all([
+      sb.from("site_planned_events").select("date").in("date", dates),
+      sb.rpc("site_admin_events", { p_from: dates[0], p_to: dates.at(-1)! }),
+    ]);
+    if (planned.error) return fail(planned.error);
+    const taken = new Set([...(planned.data ?? []).map((r) => r.date as string), ...((door.data ?? []) as { date: string }[]).map((r) => r.date)]);
+    const fresh = dates.filter((d) => !taken.has(d));
+    if (!fresh.length) return { ok: false, message: "Every one of those dates already has a night." };
+    const { error } = await sb.from("site_planned_events").insert(fresh.map((d) => ({ ...row, date: d })));
+    if (error) return fail(error);
+    const skipped = dates.length - fresh.length;
+    const { data: released } = await sb.rpc("site_release_due_events");
+    updateTag(SITE_TAG);
+    return {
+      ok: true,
+      message:
+        `Added ${fresh.length} night${fresh.length === 1 ? "" : "s"}` +
+        (skipped ? `, skipped ${skipped} date${skipped === 1 ? "" : "s"} that already had one` : "") +
+        (released ? `. ${released} within a week went to the door app now.` : "."),
+    };
+  }
+  const { data: released } = await sb.rpc("site_release_due_events");
+  return done(released ? "Saved, and sent to the door app (it's within a week)." : "Saved. The live site is updated.");
+}
+
+export async function deletePlannedEvent(form: FormData) {
+  const sb = await requireEditor();
+  await sb.from("site_planned_events").delete().eq("id", str(form, "id"));
+  updateTag(SITE_TAG);
+}
+
 /* ---------- moves ---------- */
 
 function slugify(s: string) {

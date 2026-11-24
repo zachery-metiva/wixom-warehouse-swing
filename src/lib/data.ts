@@ -116,8 +116,10 @@ export async function getPhotos(): Promise<Photo[]> {
 }
 
 type DoorEvent = {
+  id: string;
   date: string;
   name: string;
+  lesson_start: string;
   lesson_teacher: string;
   topic: string;
   level: string;
@@ -126,6 +128,19 @@ type DoorEvent = {
 };
 
 const WEEKLY_NAME = "Weekly Lessons + Social";
+
+/** "7:00 PM" -> "19:00"; falls back when the door app has no time. */
+export function to24h(t: string | null | undefined, fallback = "19:00"): string {
+  const m = (t ?? "").trim().match(/^(\d{1,2})(?::(\d{2}))?\s*([AaPp])?/);
+  if (!m) return fallback;
+  let h = Number(m[1]);
+  const min = Number(m[2] ?? 0);
+  const ap = m[3]?.toLowerCase();
+  if (ap === "p" && h < 12) h += 12;
+  if (ap === "a" && h === 12) h = 0;
+  if (h > 23 || min > 59) return fallback;
+  return `${String(h).padStart(2, "0")}:${String(min).padStart(2, "0")}`;
+}
 
 /** Calendar window: ~2 months back, ~6 months ahead. Regular Tuesdays are
  *  generated from the weekly schedule; door-app events override them, and
@@ -167,6 +182,8 @@ export async function getCalendar(): Promise<{ today: string; events: SiteEvent[
       teachers: "",
       meetupUrl: null,
       fromDoorApp: false,
+      start: "19:00",
+      end: "22:00",
     });
   }
   // ...then real events from the door app replace or add nights.
@@ -185,6 +202,8 @@ export async function getCalendar(): Promise<{ today: string; events: SiteEvent[
         .join(", "),
       meetupUrl: e.meetup_url,
       fromDoorApp: true,
+      start: to24h(e.lesson_start),
+      end: "22:00",
     });
   }
   const events = [...byDate.values()].sort((a, b) => a.date.localeCompare(b.date));

@@ -67,6 +67,9 @@ export type SiteEvent = {
   teachers: string;
   meetupUrl: string | null;
   fromDoorApp: boolean;
+  /** 24h local (America/Detroit) start/end, "19:00" / "22:00" */
+  start: string;
+  end: string;
 };
 
 export const DIFF_COLOR: Record<Difficulty, string> = {
