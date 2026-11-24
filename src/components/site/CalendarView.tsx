@@ -28,8 +28,11 @@ export function CalendarView({ today, events, meetupFallback }: { today: string;
       return { y: y + Math.floor(n / 12), m: ((n % 12) + 12) % 12 };
     });
 
-  const toggle = (active: boolean) =>
-    `cursor-pointer px-[18px] py-2.5 font-mono text-[11px] tracking-[1px] ${active ? "bg-blue text-ink" : "text-body"}`;
+  const on = "bg-blue text-ink";
+  // Until the visitor picks, the active button follows the screen size (grid on desktop, list on phones).
+  const gridOn = view === "grid" ? on : view === null ? "text-body min-[700px]:bg-blue min-[700px]:text-ink" : "text-body";
+  const listOn = view === "list" ? on : view === null ? "bg-blue text-ink min-[700px]:bg-transparent min-[700px]:text-body" : "text-body";
+  const btn = "cursor-pointer px-[18px] py-2.5 font-mono text-[11px] tracking-[1px]";
 
   // List view is the default on narrow screens; CSS decides until the visitor picks.
   const gridCls = view === "list" ? "hidden" : view === "grid" ? "block" : "hidden min-[700px]:block";
@@ -60,10 +63,10 @@ export function CalendarView({ today, events, meetupFallback }: { today: string;
           </button>
         </div>
         <div className="flex border border-line-strong" role="group" aria-label="Calendar view">
-          <button type="button" className={toggle(view === "grid")} aria-pressed={view === "grid"} onClick={() => setView("grid")}>
+          <button type="button" className={`${btn} ${gridOn}`} aria-pressed={view === "grid"} onClick={() => setView("grid")}>
             GRID
           </button>
-          <button type="button" className={toggle(view === "list")} aria-pressed={view === "list"} onClick={() => setView("list")}>
+          <button type="button" className={`${btn} ${listOn}`} aria-pressed={view === "list"} onClick={() => setView("list")}>
             LIST
           </button>
         </div>
