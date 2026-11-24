@@ -59,6 +59,7 @@ create or replace function public.site_today()
 returns date language sql stable set search_path = public as $$
   select (now() at time zone 'America/Detroit')::date;
 $$;
+grant execute on function public.site_today() to anon, authenticated;
 
 -- Release every planned night that is 0 to 7 days out and not yet in the door app.
 -- If the door app already has an event that day, link to it instead of duplicating.
@@ -124,8 +125,7 @@ revoke execute on function public.site_event_templates() from public, anon;
 grant execute on function public.site_event_templates() to authenticated;
 
 -- Public feed now includes planned (not yet released) nights too.
-drop function public.site_public_events(date, date);
-create function public.site_public_events(p_from date, p_to date)
+create or replace function public.site_public_events(p_from date, p_to date)
 returns table (
   id uuid, date date, name text, lesson_start text, social_start text,
   lesson_teacher text, topic text, level text, description text, meetup_url text
