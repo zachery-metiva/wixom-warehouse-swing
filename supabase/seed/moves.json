@@ -1,0 +1,210 @@
+[
+  {
+    "slug": "sugar-push", "name": "Sugar Push", "category": "Basics", "difficulty": "Beginner", "counts": 6, "featured": true,
+    "summary": "The foundational pattern of modern swing: a compress-and-release conversation danced in place in the slot.",
+    "steps": [
+      "Counts 1–2: the follower walks forward down the slot while the lead settles back to make space.",
+      "Counts 3&4: triple step into gentle compression. Hands meet at waist height, weight eases forward.",
+      "Release the compression like a spring; the follower travels back the way they came.",
+      "Counts 5&6: both anchor with a triple step at your own end of the slot, keeping stretch through the arm."
+    ],
+    "countRows": [{"c": "1–2", "t": "Walk, walk: follower travels in"}, {"c": "3&4", "t": "Triple step into compression"}, {"c": "5&6", "t": "Anchor triple at the end of the slot"}],
+    "mistakes": [
+      {"w": "Pulling with the arms instead of moving from your center.", "f": "Keep elbows soft and heavy. The connection starts at your feet, not your biceps."},
+      {"w": "Skipping the anchor and drifting straight into the next move.", "f": "Finish 5&6 completely. The anchor is where the stretch (and the fun) lives."}
+    ],
+    "prereqs": []
+  },
+  {
+    "slug": "left-side-pass", "name": "Left Side Pass", "category": "Passes", "difficulty": "Beginner", "counts": 6, "featured": false,
+    "summary": "The follower travels past the lead’s left side and the two swap ends of the slot. Your bread-and-butter traveling pattern.",
+    "steps": [
+      "Counts 1–2: the lead steps back and slightly left, opening the slot and inviting the follower forward.",
+      "Counts 3&4: the follower passes down the lead’s left side with a triple step; the lead redirects gently with the left hand at chest height.",
+      "Both turn to face each other as the follower reaches the far end.",
+      "Counts 5&6: anchor triple. Ends swapped, connection stretched, ready for the next pattern."
+    ],
+    "countRows": [{"c": "1–2", "t": "Walk, walk: follower enters the slot"}, {"c": "3&4", "t": "Passing triple down the left side"}, {"c": "5&6", "t": "Anchor, facing your partner"}],
+    "mistakes": [
+      {"w": "The lead stands in the slot and forces the follower around them.", "f": "Clear sideways out of the lane. The slot belongs to the follower."},
+      {"w": "Steering the follower with a big arm swing.", "f": "Lead with your body moving out of the way; the hand just describes the lane."}
+    ],
+    "prereqs": ["sugar-push"]
+  },
+  {
+    "slug": "underarm-pass", "name": "Underarm Pass", "category": "Passes", "difficulty": "Beginner", "counts": 6, "featured": false,
+    "summary": "A right-side pass where the follower travels under the lead’s raised arm. The gateway to every turning pattern.",
+    "steps": [
+      "Counts 1–2: the lead raises the joined hand to about eye level, inviting the follower forward.",
+      "Counts 3&4: the follower passes on the lead’s right side, traveling under the arm with a triple step.",
+      "The lead’s hand traces a soft halo: no cranking, no pushing the hand down.",
+      "Counts 5&6: anchor at opposite ends, lower the hands naturally into connection."
+    ],
+    "countRows": [{"c": "1–2", "t": "Walk, walk: hand rises to eye level"}, {"c": "3&4", "t": "Follower passes under the arm"}, {"c": "5&6", "t": "Anchor, hands settle"}],
+    "mistakes": [
+      {"w": "Raising the arm late so the follower has to duck.", "f": "The hand is up by the end of count 2. Think doorway, not limbo bar."},
+      {"w": "Gripping the follower’s hand through the pass.", "f": "Loose fingertips. The follower’s hand should be able to swivel freely."}
+    ],
+    "prereqs": ["left-side-pass"]
+  },
+  {
+    "slug": "sugar-tuck", "name": "Sugar Tuck", "category": "Turns", "difficulty": "Beginner", "counts": 6, "featured": false,
+    "summary": "A sugar push that ends in a turn: compress, tuck the follower slightly inward, then release into a free outward spin.",
+    "steps": [
+      "Counts 1–2: enter exactly like a sugar push, follower forward, lead settles.",
+      "Counts 3&4: tuck. The lead rotates the follower slightly inward during compression, loading the spring.",
+      "Release: the rebound sends the follower into an outward underarm turn.",
+      "Counts 5&6: the follower finishes the rotation and both anchor."
+    ],
+    "countRows": [{"c": "1–2", "t": "Walk, walk into the slot"}, {"c": "3&4", "t": "Tuck: compress and rotate slightly in"}, {"c": "5&6", "t": "Release, turn, and anchor"}],
+    "mistakes": [
+      {"w": "Cranking the turn with the arm like a steering wheel.", "f": "The turn comes from the tuck’s rebound. Your hand is a pivot point, not a motor."},
+      {"w": "The follower spins without finishing the tuck first.", "f": "Wait for the compression. No spring, no spin."}
+    ],
+    "prereqs": ["sugar-push"]
+  },
+  {
+    "slug": "inside-turn", "name": "Inside Turn", "category": "Turns", "difficulty": "Beginner", "counts": 6, "featured": true,
+    "summary": "A left side pass with a turn in the middle: the follower rotates toward the lead under the joined hand while traveling.",
+    "steps": [
+      "Counts 1–2: set up like a left side pass, but raise the joined hand by count 2.",
+      "Counts 3&4: the follower turns left (toward the lead) under the arm while continuing down the slot.",
+      "Keep the halo small and directly over the follower’s head.",
+      "Counts 5&6: finish the rotation, settle into the anchor."
+    ],
+    "countRows": [{"c": "1–2", "t": "Walk, walk: hand rises"}, {"c": "3&4", "t": "Traveling inside turn under the arm"}, {"c": "5&6", "t": "Anchor at the far end"}],
+    "mistakes": [
+      {"w": "Turning on the spot and stalling in the middle of the slot.", "f": "Keep traveling. The turn happens on the way down the slot, not instead of it."},
+      {"w": "Lead’s thumb clamps down mid-turn.", "f": "Flat, open hand. The follower borrows it; you don’t own it."}
+    ],
+    "prereqs": ["left-side-pass"]
+  },
+  {
+    "slug": "free-spin", "name": "Free Spin", "category": "Turns", "difficulty": "Intermediate", "counts": 6, "featured": false,
+    "summary": "The lead releases connection entirely and the follower spins solo down the slot. Trust, momentum, and a clean spot.",
+    "steps": [
+      "Counts 1–2: set up like an underarm pass with slightly more momentum into the slot.",
+      "On 3, release the hand with a clear, small signal. No shove.",
+      "Counts 3&4: the follower spots the far end of the slot and spins through the triple.",
+      "Counts 5&6: re-collect the connection gently and anchor together."
+    ],
+    "countRows": [{"c": "1–2", "t": "Walk, walk: building momentum"}, {"c": "3&4", "t": "Release: follower spins free"}, {"c": "5&6", "t": "Re-connect and anchor"}],
+    "mistakes": [
+      {"w": "Over-leading the spin with a big windup.", "f": "The follower generates the spin. Your job is a clean release and a clear lane."},
+      {"w": "Drifting off the slot line mid-spin.", "f": "Spot the end of the slot before you go. Eyes lead, body follows."}
+    ],
+    "prereqs": ["underarm-pass", "inside-turn"]
+  },
+  {
+    "slug": "whip", "name": "The Whip", "category": "Whips", "difficulty": "Intermediate", "counts": 8, "featured": true,
+    "summary": "The signature 8-count of modern swing: the follower is caught at count 4 and redirected back down the slot with a smooth, elastic whip action.",
+    "steps": [
+      "Counts 1–2: the follower enters the slot like a pass; the lead steps in beside the lane.",
+      "Counts 3–4: the lead catches with the right arm across the follower’s back and pivots, redirecting their momentum.",
+      "Counts 5–6: post and send. The follower travels back down the slot the way they came.",
+      "Counts 7&8: both anchor with stretch. That elastic finish is the whole point."
+    ],
+    "countRows": [{"c": "1–2", "t": "Walk, walk into the slot"}, {"c": "3–4", "t": "Catch and pivot: redirection"}, {"c": "5–6", "t": "Send back down the slot"}, {"c": "7&8", "t": "Anchor with stretch"}],
+    "mistakes": [
+      {"w": "Muscling the redirection with the right arm.", "f": "The pivot of your whole body redirects the follower. The arm just keeps the connection."},
+      {"w": "Letting the slot collapse into a circle.", "f": "Think railroad track: the follower leaves and returns on the same line."}
+    ],
+    "prereqs": ["sugar-push", "left-side-pass"]
+  },
+  {
+    "slug": "whip-outside-turn", "name": "Whip w/ Outside Turn", "category": "Whips", "difficulty": "Intermediate", "counts": 8, "featured": false,
+    "summary": "A whip where the follower adds an outside turn on the way back down the slot. The first big whip variation everyone learns.",
+    "steps": [
+      "Counts 1–4: dance the first half of a standard whip: enter, catch, pivot.",
+      "On 5, the lead raises the joined hand instead of posting low.",
+      "Counts 5–6: the follower turns right (away from the lead) under the arm while traveling back down the slot.",
+      "Counts 7&8: finish the rotation and anchor with stretch."
+    ],
+    "countRows": [{"c": "1–4", "t": "Standard whip entry and catch"}, {"c": "5–6", "t": "Outside turn traveling home"}, {"c": "7&8", "t": "Anchor"}],
+    "mistakes": [
+      {"w": "Raising the hand at 3 and telegraphing the turn too early.", "f": "Keep the whip honest through 4. The turn is announced on 5, not before."},
+      {"w": "The follower turns in place at the post.", "f": "Travel first, turn along the way. The slot still ends where it always does."}
+    ],
+    "prereqs": ["whip", "underarm-pass"]
+  },
+  {
+    "slug": "basket-whip", "name": "Basket Whip", "category": "Whips", "difficulty": "Advanced", "counts": 8, "featured": false,
+    "summary": "A two-hand whip danced through a wrapped “sweetheart” position. Close, showy, and all about frame.",
+    "steps": [
+      "Counts 1–2: from a two-hand connection, the lead draws the follower in and wraps them into sweetheart position, follower’s back to the lead’s chest.",
+      "Counts 3–4: travel together through the whip’s catch, keeping both hands connected in the wrap.",
+      "Counts 5–6: unwrap. The lead unwinds the follower back down the slot.",
+      "Counts 7&8: anchor at full stretch, two hands or one."
+    ],
+    "countRows": [{"c": "1–2", "t": "Draw in and wrap to sweetheart"}, {"c": "3–4", "t": "Whip action inside the wrap"}, {"c": "5–6", "t": "Unwrap down the slot"}, {"c": "7&8", "t": "Anchor"}],
+    "mistakes": [
+      {"w": "The wrap turns into a headlock.", "f": "Hands stay at the follower’s waist height. The follower should be able to stand tall the whole time."},
+      {"w": "Rushing the unwrap and losing the follower’s balance.", "f": "Unwind on 5–6, not 4&. Give the rotation its full two counts."}
+    ],
+    "prereqs": ["whip", "sugar-tuck"]
+  },
+  {
+    "slug": "barrel-roll", "name": "Barrel Roll", "category": "Turns", "difficulty": "Advanced", "counts": 8, "featured": false,
+    "summary": "A rolling traveling turn where the follower passes through a wrapped position and unrolls down the slot in one continuous motion.",
+    "steps": [
+      "Counts 1–2: enter with two hands and begin rotating the follower into a wrap, like the start of a basket.",
+      "Counts 3–4: instead of holding the wrap, keep the rotation rolling. The follower turns continuously through it.",
+      "Counts 5–6: the roll unwinds and carries the follower down the slot.",
+      "Counts 7&8: catch the connection and anchor."
+    ],
+    "countRows": [{"c": "1–2", "t": "Two-hand entry, rotation begins"}, {"c": "3–6", "t": "Continuous roll through the wrap"}, {"c": "7&8", "t": "Anchor"}],
+    "mistakes": [
+      {"w": "Chopping the roll into separate turns.", "f": "It’s one continuous rotation. Think rolling a barrel, not flipping pages."},
+      {"w": "Losing the slot during the roll.", "f": "The roll travels. Keep the follower’s path pointed at the end of the lane."}
+    ],
+    "prereqs": ["free-spin", "sugar-tuck"]
+  },
+  {
+    "slug": "the-lean", "name": "The Lean", "category": "Dips", "difficulty": "Intermediate", "counts": 2, "featured": false,
+    "summary": "A simple supported lean for phrase endings: the follower tips a few degrees off axis while keeping their own weight.",
+    "steps": [
+      "Signal early: a clear compression and a stilled frame tell the follower a lean is coming. Never surprise a dip.",
+      "On 1, the follower shifts slightly off axis in one straight line, head to heel.",
+      "The lead supports with frame: forearm and posture, not biceps.",
+      "Hold for a beat, then recover on the next count 1 together."
+    ],
+    "countRows": [{"c": "1", "t": "Settle into the lean: one straight line"}, {"c": "2", "t": "Hold, then recover together"}],
+    "mistakes": [
+      {"w": "The follower gives the lead all their weight.", "f": "Keep your core on. A lean is borrowed balance, not a trust fall."},
+      {"w": "No exit plan: the music ends and nobody knows how to get up.", "f": "Agree on the recovery before you need it: recover on the next downbeat, together."}
+    ],
+    "prereqs": ["sugar-push"]
+  },
+  {
+    "slug": "sweetheart-dip", "name": "Sweetheart Dip", "category": "Dips", "difficulty": "Advanced", "counts": 8, "featured": true,
+    "summary": "A dramatic dip from the wrapped sweetheart position. The big phrase-ending picture move, done safely.",
+    "steps": [
+      "Counts 1–4: wrap into sweetheart position exactly like a basket whip entry.",
+      "Counts 5–6: the lead steps into a braced stance (one leg back, frame locked) and signals down.",
+      "The follower keeps one straight line and controls their own descent along the lead’s supporting arm.",
+      "Counts 7–8: recover together on the downbeat. Smile like you planned it."
+    ],
+    "countRows": [{"c": "1–4", "t": "Wrap to sweetheart"}, {"c": "5–6", "t": "Braced stance, controlled descent"}, {"c": "7–8", "t": "Recover together"}],
+    "mistakes": [
+      {"w": "Dipping a follower who didn’t know it was coming.", "f": "Dips are invitations, not commands. Clear signal, and only with partners who know the move."},
+      {"w": "The lead bends at the waist and loses the base.", "f": "Bend your knees, not your back. Your stance is the furniture the dip rests on."}
+    ],
+    "prereqs": ["basket-whip", "the-lean"]
+  },
+  {
+    "slug": "the-pop", "name": "The Pop", "category": "Aerials", "difficulty": "Advanced", "counts": 8, "featured": false,
+    "summary": "A small hip-assisted air step: the follower pops a few inches off the floor. Workshop-only, never on the social floor.",
+    "steps": [
+      "Learn this one in a workshop with mats and a spotter, not from this page alone.",
+      "Counts 1–4: whip entry with compression at the catch, both partners counting out loud at first.",
+      "On 5, the follower jumps as the lead assists from the hip. The lift comes from the jump, not the arms.",
+      "Counts 6–8: land toes-first into a soft anchor, connection re-established."
+    ],
+    "countRows": [{"c": "1–4", "t": "Whip entry with compression"}, {"c": "5", "t": "Jump + assist: the pop"}, {"c": "6–8", "t": "Soft landing, anchor"}],
+    "mistakes": [
+      {"w": "Trying it during a social dance.", "f": "House rule: aerials live in workshops with mats and spotters, never on the open floor."},
+      {"w": "The lead lifts with arms and shoulders.", "f": "The follower jumps; the lead redirects. If your arms are tired, you’re doing it wrong."}
+    ],
+    "prereqs": ["whip"]
+  }
+]

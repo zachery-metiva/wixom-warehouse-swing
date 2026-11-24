@@ -1,0 +1,127 @@
+@import "tailwindcss";
+
+/* Warehouse Swing "Night Shift" tokens, copied from the design project
+   (tokens/colors.css + typography.css). Dark only, flat, square. */
+:root {
+  --ws-bg-0: #101114;
+  --ws-bg-1: #15161a;
+  --ws-bg-2: #0c0d10;
+  --ws-bg-cell: #1a1c21;
+  --ws-line: #24262c;
+  --ws-line-strong: #3a3d45;
+  --ws-line-hair: #1c1e23;
+  --ws-blue: #2eb6f5;
+  --ws-blue-hover: #7cd4ff;
+  --ws-text-hi: #ffffff;
+  --ws-text-body-strong: #d5d8de;
+  --ws-text-body: #a9adb6;
+  --ws-text-muted: #6f737d;
+  --ws-text-faint: #4c505a;
+  --ws-level-beginner: #2eb6f5;
+  --ws-level-intermediate: #f5a92e;
+  --ws-level-advanced: #f55e2e;
+}
+
+@theme inline {
+  --color-ink: var(--ws-bg-0);
+  --color-card: var(--ws-bg-1);
+  --color-recess: var(--ws-bg-2);
+  --color-cell: var(--ws-bg-cell);
+  --color-line: var(--ws-line);
+  --color-line-strong: var(--ws-line-strong);
+  --color-hair: var(--ws-line-hair);
+  --color-blue: var(--ws-blue);
+  --color-blue-hover: var(--ws-blue-hover);
+  --color-hi: var(--ws-text-hi);
+  --color-strong: var(--ws-text-body-strong);
+  --color-body: var(--ws-text-body);
+  --color-muted: var(--ws-text-muted);
+  --color-faint: var(--ws-text-faint);
+  --color-beginner: var(--ws-level-beginner);
+  --color-intermediate: var(--ws-level-intermediate);
+  --color-advanced: var(--ws-level-advanced);
+  --color-good: #4ccb7a;
+  --color-warn: #e8b64c;
+
+  --font-display: var(--font-bebas), "Arial Narrow", sans-serif;
+  --font-body: var(--font-space), system-ui, sans-serif;
+  --font-mono: var(--font-plex), ui-monospace, monospace;
+  --font-wordmark: var(--font-boogaloo), var(--font-bebas), sans-serif;
+}
+
+@layer base {
+  html,
+  body {
+    background: var(--ws-bg-0);
+    color: var(--ws-text-body);
+    font-family: var(--font-space), system-ui, sans-serif;
+  }
+
+  ::selection {
+    background: var(--ws-blue);
+    color: var(--ws-bg-0);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--ws-text-faint);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ws-blue);
+    outline-offset: 2px;
+  }
+}
+
+@utility blueprint {
+  background-image:
+    repeating-linear-gradient(0deg, rgba(46, 182, 245, 0.045) 0, rgba(46, 182, 245, 0.045) 1px, transparent 1px, transparent 80px),
+    repeating-linear-gradient(90deg, rgba(46, 182, 245, 0.045) 0, rgba(46, 182, 245, 0.045) 1px, transparent 1px, transparent 80px);
+}
+
+@utility hatch {
+  background: repeating-linear-gradient(45deg, #1a1c21 0, #1a1c21 10px, #15161a 10px, #15161a 20px);
+}
+
+@utility wrap {
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 4vw, 40px);
+  box-sizing: border-box;
+  width: 100%;
+}
+
+@utility eyebrow {
+  font-family: var(--font-plex), ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ws-blue);
+}
+
+@utility display {
+  font-family: var(--font-bebas), "Arial Narrow", sans-serif;
+  font-weight: 400;
+  line-height: 0.95;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+@utility field {
+  width: 100%;
+  border: 1px solid var(--ws-line-strong);
+  background: transparent;
+  padding: 12px 14px;
+  color: #fff;
+  border-radius: 0;
+  font-size: 15px;
+  &:focus {
+    outline: none;
+    border-color: var(--ws-blue);
+  }
+}

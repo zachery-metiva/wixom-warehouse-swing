@@ -1,0 +1,21 @@
+{
+  "tagline": "Lessons, socials, and a community that shows up every week. No partner needed, no experience required. Just come dance.",
+  "firstTimerStrip": true,
+  "email": "hello@warehouseswing.com",
+  "locationName": "The Warehouse",
+  "locationNote": "Full street address is on the Meetup event page. Free parking on site; the door with the blue light is the right one.",
+  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Warehouse+Swing+Wixom+MI",
+  "monthlyPass": {"price": 32, "label": "/ 4 TUESDAYS", "enabled": true},
+  "schedule": [
+    {"time": "7:00–7:30", "label": "Advanced Lesson", "blurb": "Level up your patterns and styling."},
+    {"time": "7:30–7:45", "label": "Beginner Lesson", "blurb": "Everything you need for your first dance."},
+    {"time": "7:45–10:00", "label": "Social Dance", "blurb": "Open floor. Ask anyone to dance."}
+  ],
+  "links": {
+    "meetup": "",
+    "instagram": "",
+    "facebook": "",
+    "discord": "",
+    "waiver": ""
+  }
+}
